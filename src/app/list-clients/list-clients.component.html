@@ -1,0 +1,44 @@
+<div *ngIf="displayTable">
+    <table datatable class="row-border hover" [dtOptions]="dtOptions">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>BirthDate</th>
+                <th>Address</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of listClient">
+                <td>{{client.FirstName}}</td>
+                <td>{{client.LastName}}</td>
+                <td>{{client.BirthDate}}</td>
+                <td>{{client.Address}}</td>
+                <td>{{client.Latitude}}</td>
+                <td>{{client.Longitude}}</td>
+                <td>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" style="position: absolute" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y">
+                        <button mat-menu-item>
+                          <mat-icon>edit</mat-icon>
+                          <span (click)="editRow(client)">Edito detajet</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon> edit_location</mat-icon>
+                            <span>Edito vendodhjen</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon>delete</mat-icon>
+                          <span (click)="deleteRow(client)">Fshi klientin</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
